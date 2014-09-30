@@ -8,12 +8,16 @@
 #include <map>
 #include <deque>
 
-
+#include <TCanvas.h>
+#include <TQObject.h>
 #include <TObject.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TH3.h>
 #include <TCut.h>
+#include <TLine.h>
+#include <TFrame.h>
+#include <TPaveStats.h>
 
 class GRSIHistInfo {
    public:

@@ -854,7 +854,7 @@ void TGRSIViewer::GRSICanvasProcessEvent(Int_t event,Int_t x,Int_t y,TObject *se
             Float_t binx = gPad->PadtoX(ux);
             ghm->AddXMarker(hist1->GetName(),binx);
          }
-         }
+      }
          break;
       case kKeyPress:
          printf("a key was pressed\n");

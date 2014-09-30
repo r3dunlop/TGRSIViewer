@@ -173,6 +173,56 @@ void TGRSIHistManager::UndrawXMarker(Int_t bin, TH1* hist){
 void TGRSIHistManager::DrawXMarker(Int_t bin, TH1* hist){
     printf("Drawing a line on bin %d\n",bin);
 
+   //need to do these lines for weird gPad pointer issues.
+   TCanvas *canvas = (TCanvas*)gTQSender;
+   canvas->cd();
+   //Int_t ymax = hist->GetNbinsY();
+   Int_t ymin, ymax;
+
+   TPaveStats *statsbox = (TPaveStats*)(hist->FindObject("stats"));
+
+   TFrame *frame = (TFrame*)canvas->GetPrimitive("TFrame");
+   ymin = frame->GetY1();
+   ymax = frame->GetY2();
+
+/*
+   gVirtualX->SetDrawMode(TVirtualX::kXor);
+   gVirtualX->SetOpacity(100);
+gPad->GetCanvas()->FeedbackMode(kTRUE);
+      int px = gPad->GetEventX();
+         int py = gPad->GetEventY();
+            float uxmin = gPad->GetUxmin();
+               float uxmax = gPad->GetUxmax();
+                  int pxmin = gPad->XtoAbsPixel(uxmin);
+                     int pxmax = gPad->XtoAbsPixel(uxmax);
+                           gVirtualX->DrawLine(pxmin,py,pxmax,py);
+                           */
+                           
+   TLine *line = new TLine(bin,ymin,bin,ymax);
+   line->SetLineColor(kRed);
+   line->Draw();
+
+   if(statsbox){
+      statsbox->Pop();
+      statsbox->Draw();
+   }
+   canvas->Update();
+
+/*
+gPad->GetCanvas()->FeedbackMode(kTRUE);
+
+   int px = bin;
+   float uymin = canvas->GetUymin();
+   float uymax = canvas->GetUymax();
+   int pymin   = canvas->YtoAbsPixel(uymin);
+   int pymax =   canvas->YtoAbsPixel(uymax);
+    gVirtualX->DrawLine(bin,pymin,bin,pymax);
+   gPad->SetUniqueID(px);
+   Float_t upx = canvas->AbsPixeltoX(px);
+   Float_t y = canvas->PadtoX(upx);
+    canvas->Update();
+*/
+                        //line->DrawLine(bin,pymin,bin,pymax);
 }
 
 
