@@ -794,7 +794,7 @@ void TGRSIViewer::HandleListTreeReturnPressed(TGListTreeItem *entry) {
 
 void TGRSIViewer::GRSICanvasSelected(TPad *selpad, TObject *selected, Int_t event) {
    fCurrentPad = selpad;
-   printf("\t\tSelecting Pad = 0x%08x\t\t\n",fCurrentPad);
+   printf("\t\tSelecting Pad = 0x%p\t\t\n",fCurrentPad);
    return;
 }
 

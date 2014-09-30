@@ -14,7 +14,7 @@ std::map<TH1*,TGRSIHistManager*> TGRSIHistManager::MasterHistManagerMap;
 TGRSIHistManager* TGRSIHistManager::GetHistManagerFromHist(TH1* hist){
    TGRSIHistManager* ghm = 0;
    
-   printf("\tgetting ghm for = 08%08x\n",hist);
+   printf("\tgetting ghm for = 08%p\n",hist);
    if(MasterHistManagerMap.count(hist) == 1) {
       ghm = MasterHistManagerMap.at(hist);
    }
@@ -44,7 +44,7 @@ void TGRSIHistManager::InsertHist(TObject *obj,Option_t *opt) {
    else if(hist->InheritsFrom("TH2"))
       info->dimension = 2;
   
-   printf("\tobj = 08%08x\n",hist);
+   printf("\tobj = 08%p\n",hist);
    MasterHistManagerMap.insert(std::make_pair(hist,this));
 
    fGRSIHistMap.insert(std::make_pair(info,hist));
