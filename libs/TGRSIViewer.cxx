@@ -857,6 +857,7 @@ void TGRSIViewer::GRSICanvasProcessEvent(Int_t event,Int_t x,Int_t y,TObject *se
          }
          break;
       case kKeyPress:
+         printf("a key was pressed\n");
          HandleKeyPressInHist(hist1,x,y);
          break;
    };
@@ -867,9 +868,19 @@ void TGRSIViewer::GRSICanvasProcessEvent(Int_t event,Int_t x,Int_t y,TObject *se
 
 
 void TGRSIViewer::HandleKeyPressInHist(TH1 *hist,Int_t key,Int_t keysym) {
+   TCanvas *c = (TCanvas *) gTQSender;
    switch(keysym) {
       case kKey_Down:
          printf("down key pressed.\n");
+         break;
+      case kKey_Up:
+         printf("up key was pressed.\n");
+         break;
+      case kKey_Right:
+         printf("right key was pressed.\n");
+         break;
+      case kKey_Left:
+         printf("left key was pressed.\n");
          break;
    };
 
